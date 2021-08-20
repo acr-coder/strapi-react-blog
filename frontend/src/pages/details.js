@@ -8,8 +8,9 @@ const Details = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(async () => {
-    setLoading(true);
+  useEffect( () => {
+    async function fetchData(){
+      setLoading(true);
     try {
       const res = await axios.get(`http://localhost:1337/blogs/${id}`);
       setResult(res.data);
@@ -18,6 +19,9 @@ const Details = () => {
       setError(error);
       setLoading(false);
     }
+    }
+
+    fetchData()    
   }, [id]);
 
   if (loading) return <p>Loading...</p>;

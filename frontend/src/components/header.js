@@ -4,16 +4,30 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
     const [categories, setCategories] = useState([])
+    const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(async () => {
-        const result = await axios.get("http://localhost:1337/categories");
+    useEffect( () => {
+      async function fetchData(){
+        setLoading(true);
+        try {
+          const result = await axios.get("http://localhost:1337/categories");
         //console.log(result.data);
         setCategories(result.data)
+        setLoading(false);
+          
+        } catch (error) {
+          setError(error);
+      setLoading(false);
+        }
+      }
+      fetchData()
+        
     }, [])
 
     return (
         
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <div className="container-fluid">
     
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

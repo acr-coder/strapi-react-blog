@@ -9,7 +9,8 @@ const Category = () => {
     const [ res, setRes ] = useState({})
     
 
-    useEffect(async () => {
+    useEffect( () => {
+      async function fetchData(){
         setLoading(true)
         try {
           const result = await axios.get(`http://localhost:1337/categories/${id}`);
@@ -19,9 +20,10 @@ const Category = () => {
           setError(error)
           setLoading(false);
         }
-        
-        
-        
+
+      }
+      fetchData()
+       
     }, [id])
 
     if(loading) return <p>Loading...</p>
