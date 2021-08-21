@@ -37,6 +37,7 @@ function App() {
         newBlog
       )
       setBlogs([result.data, ...blogs])
+      alert("New Blog is added")
 
     } catch (error) {
       console.log(error);

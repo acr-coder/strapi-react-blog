@@ -87,7 +87,16 @@ const AddBlog = ({ addNewBlog }) => {
         </div>
         <button type="button" 
 
-        onClick={() => addNewBlog(newBlog)}
+        onClick={() => (
+          addNewBlog(newBlog),
+          setNewBlog({
+            title:"",
+            author:"",
+            body:"",
+            category:""
+
+          })
+        )}
         
         className="btn btn-primary mt-3 w-50">
           ADD
